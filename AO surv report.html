@@ -193,6 +193,10 @@ h3 {
 	font-size: 1.25rem !important;
 }
 
+.progress {height:18px}
+.progress-bar {width:0}
+.progress-bar {background-color: #5fb1e2}
+
 
 
 </style>
@@ -201,7 +205,15 @@ h3 {
 	$( document ).ready( function() {
 	//console.log('ready!')
 
-	var fillYears = ['2017','2018','2019','2020'];
+	var fillYears = dhis2.report.periods;
+
+	fillYears = fillYears.sort((a,b) => b-a);
+
+	console.log(fillYears);
+
+
+
+	//var fillYears = ['2017','2018','2019','2020'];
 
 	for (var i = 0; i < fillYears.length; i++) {
 		$('#startYear').append('<option value="' + fillYears[i] + '">' + fillYears[i] + '</option>');
@@ -214,6 +226,24 @@ h3 {
 	document.title = 'Fonte: HNQIS – DHIS2';
 	//document.lastModified = 'Data de elaboração: ' + new D
 });
+
+	// show progress
+	//function showProgress() {
+	//	var p;
+	//	if ( p ){
+	//		p.prependTo('body');
+	//		p=null;
+	//	}
+	//	$('.progress-bar').css('width', 0);
+	//	$('.progress-bar').stop().animate({
+	//		width: '100%'
+	//	}, 500, function() {
+	//		setTimeout(function() {
+	//			p = $('.progress').detach();
+	//			console.log(p);
+	//		}, 1000)
+	//	});
+	//}
 
 	// Report table global vars
 	reportTablePlugin.url = "https://ao-dev.hnqis.org";
@@ -599,6 +629,12 @@ $( document ).ready( function() {
 
 
 	<div id="reportDiv" class="container-fluid report-body">
+		<!-- Add the prgress bar 
+		<div class="progress progress-striped active">
+			<div class="progress-bar"></div>
+		</div>-->
+
+
 		<div id="report-cover-page">
 		<div class="row">
 			<div class="col align-self-start" style="padding-top: 40px;">
